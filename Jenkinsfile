@@ -8,24 +8,24 @@ pipeline {
  stages {
  stage("Cloning Git") {
  steps {
- git([url: ‘https://github.com/skalash001/doc-jen.git', branch: ‘main’])
+ git([url: "https://github.com/skalash001/doc-jen.git", branch: "main"])
  }
  }
- stage(‘Building image’) {
+ stage("Building image") {
  steps{
  script {
  dockerImage = docker.build imagename
  }
  }
  }
- stage(‘Running image’) {
+ stage("Running image") {
  steps{
  script {
  sh “docker run ${imagename}:latest”
  }
  }
  }
- stage(‘Deploy Image’) {
+ stage("Deploy Image") {
  steps{
  script {
  docker.withRegistry( ‘’, registryCredential ) {
